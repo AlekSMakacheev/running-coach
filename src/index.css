@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;    
+@tailwind utilities;
+
+/* Плавная прокрутка страницы */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
