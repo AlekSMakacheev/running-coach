@@ -6,7 +6,7 @@ const Reviews = () => {
    return (
 
     <section id="reviews" className="py-20 bg-slate-800 text-white">
-      <div max-w-6xl mx-auto px-8>
+      <div className="max-w-6xl mx-auto px-8">
 
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-16">
           Отзывы учеников

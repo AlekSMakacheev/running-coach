@@ -5,7 +5,7 @@ const Pricing = ({ onSelectPlan }) => {
   // Функция клика: запоминаем тариф и скроллим
   const handlePlanSelect = (planTitle) => {
     onSelectPlan(planTitle); // Сообщаем в App.jsx название тарифа
-    document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'center'});
+    document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'});
   };
   
   return (
@@ -18,9 +18,10 @@ const Pricing = ({ onSelectPlan }) => {
       </h2>
 
       {/* Сетка тарифов */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {data.pricing.map((plan) => (
           <div
+            key={plan.id}
             id={plan.id}
             // ЛОГИКА: Если тариф популярный (isPopular), красим рамку в оранжевый и делаем фон чуть светлее
             className={`relative p-8 rounded-2xl border transition duration-300 flex flex-col
@@ -39,10 +40,10 @@ const Pricing = ({ onSelectPlan }) => {
 
             {/* Название и Цена */}
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-slate-300 mb-2">{plan.title}</h3>
-              <div className="text-4xl font-bold text-white">
+              <h3 className="text-xl font-bold text-slate-300 mb-2 text-center">{plan.title}</h3>
+              {/* <div className="text-4xl font-bold text-white">
                 {plan.price}
-              </div>
+              </div> */}
             </div>
 
             {/* Список услуг (Цикл внутри цикла!) */}
@@ -58,6 +59,10 @@ const Pricing = ({ onSelectPlan }) => {
               ))}
             </ul>
 
+            <div className="text-4xl font-bold text-white text-center mb-6">
+                {plan.price}
+              </div>
+
             {/* Кнопка */}
             <button
               onClick={() => handlePlanSelect(plan.title)}          
@@ -68,7 +73,7 @@ const Pricing = ({ onSelectPlan }) => {
                 : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-600'
               }
             `}>
-              Выбрать тариф
+              Записаться
             </button>
 
           </div>

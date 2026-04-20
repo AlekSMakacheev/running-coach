@@ -1,25 +1,18 @@
 import { useEffect, useState } from "react";
 import { data } from "../data/data";
 
-
 const Footer = ({ selectedPlan }) => {
+  const [message, setMessage] = useState("");
 
-  // Локальное состояние для текста сообщения
-    const [message, setMessage] = useState("");
+  useEffect(() => {
+    if (!selectedPlan) return;
+    Promise.resolve().then(() => {
+      setMessage(`Здравствуйте! Меня интересует тариф '${selectedPlan}'. Расскажите подробнее.`)
+    });   
+  }, [selectedPlan]);
 
-    // 2. Следим за изменениями: если в App.jsx поменялся тариф, обновляем текст
-    useEffect(() => {
-      if (!selectedPlan) return;
-    
-      Promise.resolve().then(() => {
-        setMessage(`Здравствуйте! Меня интересует тариф '${selectedPlan}'. Расскажите подробнее.`)
-      });   
-    }, [selectedPlan]);
-
-  // Функция для очистки номера телефона (убирает скобки и пробелы для ссылки tel:)
   const cleanPhone = (phone) => phone.replace(/[^0-9]/g, '');
 
-  // Функция, которая выдает SVG-иконку по названию соцсети
   const getSocialIcon = (name) => {
     switch (name) {
       case 'Telegram':
@@ -46,102 +39,115 @@ const Footer = ({ selectedPlan }) => {
   }
 
   return (
-
-    <footer id="contact" className="bg-slate-950 text-white pt-20 pb-10">
+    <footer id="contact" className="bg-slate-950 text-white pt-24 pb-16 scroll-mt-10">
       <div className="max-w-6xl mx-auto px-8">
-
-        <div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 mb-16">
-          {/* Левая колонка: Контакты и Текст */}
-
-          <h2 className="text-4xl font-bold mb-6">
+        
+        {/* Главный заголовок секции */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {data.contact.title} <span className="text-orange-500">?</span>
           </h2>
-
-          <p className="text-slate-400 mb-8 text-lg leading-relaxed">
+          <p className="text-slate-400 text-lg">
             {data.contact.subtitle}
           </p>
+        </div>
 
-          <div className="space-y-4 mb-8">
-            {/* Почта с mailto: */}
-            <a href={`mailto:${data.contact.email}`}
-            className="flex items-center text-xl hover:text-orange-500 transition duration-300 w-fit"
-            >
-              <span className="text-orange-500 mr-3">✉️</span>
-                {data.contact.email}
-            </a>
-            {/* Телефон с tel: */}
-            <a href={`tel:${cleanPhone(data.contact.phone)}`}
-            className="flex items-center text-xl hover:text-orange-500 transition duration-300 w-fit"
-            >
-              <span className="text-orange-500 mr-3">📞</span>
-              {data.contact.phone}
-            </a>
+        {/* Сетка: 1 колонка на мобилках, 2 колонки на ПК */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          
+          {/* ЛЕВАЯ КОЛОНКА: Форма */}
+          <div className="bg-slate-900 p-8 md:p-10 rounded-2xl border border-slate-800 shadow-xl">
+            <h3 className="text-2xl font-bold mb-6 text-white text-center md:text-left">Оставить заявку</h3>
+            <form action="https://formspree.io/f/xzznjjej" method="POST" className="space-y-6">  
+              <div>
+                <label className="block text-slate-400 mb-2 text-sm">Ваше имя</label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition"
+                  placeholder="Иван Иванов"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-400 mb-2 text-sm">Телефон или Telegram</label>
+                <input
+                  type="text"
+                  name="contact"
+                  required
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition"
+                  placeholder="+7 (999) 000-00-00 или @telegram"
+                />
+              </div>
+
+              <div>
+                <label className="block text-slate-400 mb-2 text-sm">Цель тренировки</label>
+                <textarea
+                  name="message"
+                  rows="4"
+                  className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition"
+                  placeholder="Хочу пробежать полумарафон..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                ></textarea>
+              </div>
+
+              <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition duration-300 text-lg">
+                Отправить заявку
+              </button>
+            </form>
           </div>
 
-          {/* Соцсети */}
-          <div className="flex space-x-4">
-            {data.contact.socials.map((social) => (
-              <a
-                key={social.id}
-                href={social.link}
-                target="blank" // Открывать в новой вкладке
-                rel="noopener noreferrer"
-                className="w-12 h-12 rounded-lg bg-slate-800 flex items-center justify-center hover:bg-slate-700 hover:text-orange-500 transition duration-300 text-white"
-              >
-                {/* Вызываем нашу функцию для отрисовки иконки */}
-                {getSocialIcon(social.name)}
+          {/* ПРАВАЯ КОЛОНКА: Профиль тренера и контакты (ТЕПЕРЬ ПО ЦЕНТРУ) */}
+          <div className="flex flex-col items-center justify-center h-full space-y-8 pl-0 md:pl-8 text-center mt-10 md:mt-0">
+            
+            {/* Блок с фото и именем */}
+            <div className="flex flex-col items-center space-y-4">
+              <div className="w-32 h-32 rounded-full bg-slate-800 border-2 border-orange-500 flex items-center justify-center overflow-hidden shrink-0 shadow-lg shadow-orange-500/20">
+                 {/* Сюда позже вставим тег <img /> с вашим фото */}
+                 <span className="text-slate-500 text-sm text-center px-2">Ваше<br/>фото</span>
+              </div>
+              <div>
+                <h3 className="text-3xl font-bold text-white mb-2">Иван Иванов</h3>
+                <p className="text-orange-500 font-medium text-lg">Персональный тренер по бегу</p>
+              </div>
+            </div>
+
+            <div className="w-16 h-1 bg-slate-800 rounded mx-auto"></div> {/* Разделитель */}
+
+            {/* Контакты (Телефон и Email) */}
+            <div className="flex flex-col items-center space-y-5">
+              <a href={`tel:${cleanPhone(data.contact.phone)}`} className="flex items-center justify-center text-xl hover:text-orange-500 transition duration-300">
+                <span className="text-orange-500 mr-3 text-2xl">📞</span>
+                {data.contact.phone}
               </a>
-            ))}
+              <a href={`mailto:${data.contact.email}`} className="flex items-center justify-center text-xl hover:text-orange-500 transition duration-300">
+                <span className="text-orange-500 mr-3 text-2xl">✉️</span>
+                {data.contact.email}
+              </a>
+            </div>
+
+            {/* Мессенджеры */}
+            <div className="flex flex-col items-center pt-4">
+              <div className="flex justify-center space-x-5">
+                {data.contact.socials.map((social) => (
+                  <a
+                    key={social.id}
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-14 h-14 rounded-full bg-slate-800 flex items-center justify-center hover:bg-orange-500 transition duration-300 text-white shadow-lg"
+                  >
+                    {getSocialIcon(social.name)}
+                  </a>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* Правая колонка: Форма */}
-        <div className="bg-slate-900 p-8 rounded-2xl border border-slate-800">
-          {/* YOUR_ID: Это заглушка. Вам нужно зарегистрироваться на Formspree, создать новую форму и заменить YOUR_ID на уникальный код, который вам выдаст сервис  */}
-          <form action="https://formspree.io/f/xzznjjej" method="POST" className="space-y-6">  
-            <div>
-              <label className="block text-slate-400 mb-2 text-sm">Ваше имя</label>
-              <input
-                type="text"
-                name="name"
-                required
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition"
-                placeholder="Иван Иванов"
-              />
-            </div>
-
-            <div>
-              <label className="block text-slate-400 mb-2 text-sm">Email</label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition"
-                placeholder="ivan@mail.ru"
-              />
-            </div>
-
-            <div>
-              <label className="block text-slate-400 mb-2 text-sm">Цель тренировки</label>
-              <textarea
-                name="message"
-                rows="4"
-                className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-orange-500 transition"
-                placeholder="Хочу пробежать полумарафон..."
-                value={message}
-                onChange={(e) => setMessage(e.target.value)} // Разрешаем пользователю редактировать текст
-              ></textarea>
-            </div>
-
-            <button type="submit" className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 rounded-lg transition duration-300">
-              Отправить заявку
-            </button>
-
-          </form>
-        </div>
-        </div>
       </div>
     </footer>
   );
