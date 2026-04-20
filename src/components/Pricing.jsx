@@ -2,9 +2,8 @@ import { data } from "../data/data";
 
 const Pricing = ({ onSelectPlan }) => {
 
-  // Функция клика: запоминаем тариф и скроллим
   const handlePlanSelect = (planTitle) => {
-    onSelectPlan(planTitle); // Сообщаем в App.jsx название тарифа
+    onSelectPlan(planTitle); 
     document.getElementById('contact').scrollIntoView({behavior: 'smooth', block: 'start'});
   };
   
@@ -23,7 +22,7 @@ const Pricing = ({ onSelectPlan }) => {
           <div
             key={plan.id}
             id={plan.id}
-            // ЛОГИКА: Если тариф популярный (isPopular), красим рамку в оранжевый и делаем фон чуть светлее
+
             className={`relative p-8 rounded-2xl border transition duration-300 flex flex-col
               ${plan.isPopular
                 ? 'border-orange-500 bg-slate-800 shadow-xl shadow-orange-500/10 scale-105'
@@ -31,22 +30,17 @@ const Pricing = ({ onSelectPlan }) => {
               }`
             }
           >
-            {/* Бейдж "Популярное" (показываем только если true) */}
+
             {plan.isPopular && (
               <div className="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
                 ХИТ
               </div>
             )}
 
-            {/* Название и Цена */}
             <div className="mb-6">
               <h3 className="text-xl font-bold text-slate-300 mb-2 text-center">{plan.title}</h3>
-              {/* <div className="text-4xl font-bold text-white">
-                {plan.price}
-              </div> */}
             </div>
 
-            {/* Список услуг (Цикл внутри цикла!) */}
             <ul className="mb-8 flex-grow space-y-4">
               {plan.features.map((feature, index) => (
                 <li key={index} className="flex items-center text-slate-300">
@@ -63,7 +57,6 @@ const Pricing = ({ onSelectPlan }) => {
                 {plan.price}
               </div>
 
-            {/* Кнопка */}
             <button
               onClick={() => handlePlanSelect(plan.title)}          
               className={`

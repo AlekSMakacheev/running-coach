@@ -23,7 +23,6 @@ const Navbar = () => {
         RUN<span className="text-white">COACH</span>
       </div>
 
-      {/* DESKTOP MENU (Обычное меню для ПК) */}
       <div className="hidden md:flex items-center space-x-8">
 
         <ul className="flex space-x-8">
@@ -44,19 +43,15 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* --- МОБИЛЬНАЯ ЧАСТЬ --- */}
-      {/* Иконка Бургера (появляется только на мобильных md:hidden) */}
       <div onClick={handleNav} className="md:hidden z-20 cursor-pointer" >
         {nav ? (
-          // Иконка "Крестик" (если меню открыто)
+
           <span className="text-3xl">✕</span>
         ) : (
-          // Иконка "Бургер" (если закрыто)
           <span className="text-3xl">☰</span>
         )}
       </div>
 
-      {/* Выпадающее мобильное меню */}
       <div className={
         nav
           ? "fixed left-0 top-0 w-full h-screen bg-slate-900 flex flex-col justify-center items-center transition-all duration-300 ease-in-out z-10" // Открыто
@@ -67,13 +62,13 @@ const Navbar = () => {
             <li key={item.id} className="py-6 text-3xl">
               <a
                 href={item.link}
-                onClick={() => setNav(false)} // Закрываем меню при клике на ссылку
+                onClick={() => setNav(false)} 
               >
                 {item.text}
               </a>
             </li>
           ))}
-          {/* Кнопка в мобильном меню */}
+
           <li className="mt-8">
             <button onClick={() => {setNav(false); scrollToContact()}} className="bg-orange-500 px-8 py-3 rounded-full text-xl text-white">
               Контакты

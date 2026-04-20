@@ -42,7 +42,6 @@ const Footer = ({ selectedPlan }) => {
     <footer id="contact" className="bg-slate-950 text-white pt-24 pb-16 scroll-mt-10">
       <div className="max-w-6xl mx-auto px-8">
         
-        {/* Главный заголовок секции */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             {data.contact.title} <span className="text-orange-500">?</span>
@@ -52,13 +51,14 @@ const Footer = ({ selectedPlan }) => {
           </p>
         </div>
 
-        {/* Сетка: 1 колонка на мобилках, 2 колонки на ПК */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           
-          {/* ЛЕВАЯ КОЛОНКА: Форма */}
           <div className="bg-slate-900 p-8 md:p-10 rounded-2xl border border-slate-800 shadow-xl">
             <h3 className="text-2xl font-bold mb-6 text-white text-center md:text-left">Оставить заявку</h3>
-            <form action="https://formspree.io/f/xzznjjej" method="POST" className="space-y-6">  
+            <form action="https://formspree.io/f/xzznjjej" method="POST" className="space-y-6"> 
+
+            <input type="hidden" name="_next" value={window.location.origin + "/success"} />
+             
               <div>
                 <label className="block text-slate-400 mb-2 text-sm">Ваше имя</label>
                 <input
@@ -99,13 +99,11 @@ const Footer = ({ selectedPlan }) => {
             </form>
           </div>
 
-          {/* ПРАВАЯ КОЛОНКА: Профиль тренера и контакты (ТЕПЕРЬ ПО ЦЕНТРУ) */}
           <div className="flex flex-col items-center justify-center h-full space-y-8 pl-0 md:pl-8 text-center mt-10 md:mt-0">
             
-            {/* Блок с фото и именем */}
             <div className="flex flex-col items-center space-y-4">
               <div className="w-32 h-32 rounded-full bg-slate-800 border-2 border-orange-500 flex items-center justify-center overflow-hidden shrink-0 shadow-lg shadow-orange-500/20">
-                 {/* Сюда позже вставим тег <img /> с вашим фото */}
+                 {/* Сюда позже тег <img /> с вашим фото */}
                  <span className="text-slate-500 text-sm text-center px-2">Ваше<br/>фото</span>
               </div>
               <div>
@@ -114,9 +112,8 @@ const Footer = ({ selectedPlan }) => {
               </div>
             </div>
 
-            <div className="w-16 h-1 bg-slate-800 rounded mx-auto"></div> {/* Разделитель */}
+            <div className="w-16 h-1 bg-slate-800 rounded mx-auto"></div> 
 
-            {/* Контакты (Телефон и Email) */}
             <div className="flex flex-col items-center space-y-5">
               <a href={`tel:${cleanPhone(data.contact.phone)}`} className="flex items-center justify-center text-xl hover:text-orange-500 transition duration-300">
                 <span className="text-orange-500 mr-3 text-2xl">📞</span>
@@ -128,7 +125,6 @@ const Footer = ({ selectedPlan }) => {
               </a>
             </div>
 
-            {/* Мессенджеры */}
             <div className="flex flex-col items-center pt-4">
               <div className="flex justify-center space-x-5">
                 {data.contact.socials.map((social) => (

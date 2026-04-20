@@ -3,13 +3,12 @@ import React from 'react';
 const About = () => {
   return (
     <section id="about" className="py-20 bg-slate-950 text-white">
-      {/* Сделали контейнер шире (max-w-6xl), чтобы 1/3 + 2/3 смотрелись хорошо */}
+      
       <div className="max-w-6xl mx-auto px-8">
         
-        {/* Главная сетка: 1 колонка на мобилках, 3 колонки на ПК (1 для фото, 2 для текста) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center bg-slate-900 p-8 md:p-12 rounded-3xl border border-slate-800 shadow-xl">
           
-          {/* ЛЕВАЯ КОЛОНКА (1/3): Большое фото */}
+
           <div className="w-full h-full min-h-[350px] md:min-h-[450px] bg-slate-800 rounded-2xl flex items-center justify-center shrink-0 border border-slate-700 shadow-inner overflow-hidden relative group">
              {/* Заглушка. Когда будет фото, замените этот SVG на тег:
                 <img src="/ваше_фото.jpg" className="w-full h-full object-cover rounded-2xl transition duration-500 group-hover:scale-105" /> 
@@ -22,10 +21,8 @@ const About = () => {
              </div>
           </div>
 
-          {/* ПРАВАЯ КОЛОНКА (2/3): Имя, Списки, Текст и Карточки */}
           <div className="md:col-span-2 flex flex-col space-y-10 text-center md:text-left">
             
-            {/* 1. Имя и списки */}
             <div>
               <h2 className="text-4xl font-bold mb-5 text-white">Иван Иванов</h2>
               <ul className="text-blue-400 space-y-2.5 font-medium text-lg inline-block md:block mx-auto md:mx-0">
@@ -44,7 +41,6 @@ const About = () => {
               </ul>
             </div>
 
-            {/* 2. Обновленный Текст (Био) - без лишних фраз */}
             <div className="text-slate-300 text-lg leading-relaxed space-y-5 text-justify">
               <p>Я занимаюсь бегом уже 10 лет и пробежал 3 марафона (Москва, Санкт-Петербург, Казань).</p>
               <p>
@@ -52,10 +48,8 @@ const About = () => {
               </p>
             </div>
 
-            {/* 3. Карточки с цифрами (сетка внутри правой колонки) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
-              {/* Карточка 1 */}
               <div className="bg-slate-950 rounded-2xl p-6 text-center border border-slate-800 hover:border-slate-700 transition duration-300 group">
                  <div className="flex justify-center mb-3">
                    <svg className="w-6 h-6 text-slate-500 group-hover:text-blue-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -64,7 +58,6 @@ const About = () => {
                  <div className="text-slate-400 text-sm">Лет опыта</div>
               </div>
 
-              {/* Карточка 2 */}
               <div className="bg-slate-950 rounded-2xl p-6 text-center border border-slate-800 hover:border-slate-700 transition duration-300 group">
                  <div className="flex justify-center mb-3">
                    <svg className="w-6 h-6 text-slate-500 group-hover:text-blue-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
@@ -73,7 +66,6 @@ const About = () => {
                  <div className="text-slate-400 text-sm">Учеников</div>
               </div>
 
-              {/* Карточка 3 */}
               <div className="bg-slate-950 rounded-2xl p-6 text-center border border-slate-800 hover:border-slate-700 transition duration-300 group">
                  <div className="flex justify-center mb-3">
                    <svg className="w-6 h-6 text-slate-500 group-hover:text-blue-400 transition" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>

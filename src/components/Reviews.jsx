@@ -15,7 +15,6 @@ const Reviews = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {data.reviews.map((review) => (
             <div key={review.id} className="bg-slate-900 p-8 rounded-2xl border border-slate-700 relative">
-              {/* Декоративная кавычка */}
               <div className="text-orange-500 text-6xl absolute top-4 right-6 opacity-20 font-serif"></div>
 
               <p className="text-slate-300 mb-6 italic relative z-10">
