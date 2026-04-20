@@ -1,16 +1,33 @@
-# React + Vite
+# Running Coach Landing Page 🏃‍♂️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Современный и адаптивный лендинг для персонального тренера по бегу. Проект выполнен с акцентом на высокую конверсию и профессиональное позиционирование специалиста с медицинским образованием.
 
-Currently, two official plugins are available:
+## ✨ Ключевые особенности
+* **Персонализация:** Блок "Обо мне" с уникальным позиционированием (врач + тренер) и интерактивными карточками достижений.
+* **Тарифы:** Продуманная сетка цен с акцентом на пробную тренировку.
+* **Удобная конверсия:** Форма обратной связи с автоматическим заполнением темы сообщения при выборе тарифа.
+* **Адаптивность:** Сайт идеально отображается на смартфонах, планшетах и компьютерах.
+* **Dark Mode Design:** Стильный темный интерфейс в спортивной тематике.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Технологии
+* **React 18** — фронтенд-библиотека.
+* **Vite** — быстрая сборка проекта.
+* **Tailwind CSS** — современный фреймворк для стилизации.
+* **Lucide React** — минималистичные иконки.
+* **Formspree** — обработка заявок с формы без бэкенда.
 
-## React Compiler
+## 🚀 Запуск проекта
+1. Склонируйте репозиторий:
+   ```bash
+   git clone [https://github.com/AlekSMakacheev/running-coach.git](https://github.com/AlekSMakacheev/running-coach.git)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+2. Установите необходимые зависимости:
+   ```bash
+   npm install
 
-## Expanding the ESLint configuration
+3. Запустите проект локально в режиме разработки:
+    ```bash
+    npm run dev
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🌐 Деплой
+Проект настроен для автоматического развертывания через сервис **Vercel**. При каждом обновлении ветки `master` сайт пересобирается и обновляется автоматически.
